@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  php:
+    restart: always
+    build: ./php
+    container_name: php
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../:/var/www
+      - ./php/20-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    command: ["php", "app/console", "server:run", "0.0.0.0:8000"]
+
+  composer:
+    restart: 'no'
+    container_name: composer
+    image: composer/composer:1.1-php5-alpine
+    volumes:
+    - ../:/app
+    command: update
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb:/data/db
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
