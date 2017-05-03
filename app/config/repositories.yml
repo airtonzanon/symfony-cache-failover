@@ -1,0 +1,7 @@
+services:
+    repository.customers:
+        class:        AppBundle\Repository\CustomersRepository
+        arguments:    [@database_service]
+    repository.cache.costumers:
+            class:        AppBundle\Repository\CustomersCacheRepository
+            arguments:    [@cache_service]
