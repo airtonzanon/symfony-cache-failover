@@ -1,23 +1,14 @@
-EasyTaxi Cache Failover
+Cache Fail over Symfony
 ========
 
-Instructions
-------
-Hello, this is a simple challenge to test your skills on Symfony, PHPUnit and Cache.
+Docker
+---------
 
-You will see that we have a Controller\CustomerController. It basically gives you the following capabilities:
+* `cd ./docker`
+* `docker-compose up --build`
 
-* Create multiple customers by sending an json to /customers/ endpoint
-* Delete all customers
-* Consult all customers
+* PS: Wait composer container finish, then you'll may be ready to start
 
-So what do you have to do?
-
-* We want you to obtain the reponse of GET customers method from a Cache Server.
-* Since you know that this information is immutable until someone hits POST/DELETE customer methods, you shall not hit the Database if cache information is available.
-* To let the things a little bit interesting you will have to implement an failover: If Cache Server goes down, you have to hit the Database and this needs to be transparent to our end user, not an Error page!
-* Make Unit and Functional tests to ensure everything is working fine.
-* You will recieve a thumbs up for good Commit Messages and SOLID knowledge.
 
 Minimum Requirements
 ---------
