@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CustomersControllerTest extends WebTestCase
+class PostCustomersControllerTest extends WebTestCase
 {
     protected $client;
 
@@ -26,5 +26,15 @@ class CustomersControllerTest extends WebTestCase
         $this->client->request('POST', '/customers/', [], [], ['CONTENT_TYPE' => 'application/json'], $customers);
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
+    }
+
+    public function testFailCreateCustomers()
+    {
+        $customers = [];
+        $customers = json_encode($customers);
+
+        $this->client->request('POST', '/customers/', [], [], ['CONTENT_TYPE' => 'application/json'], $customers);
+
+        $this->assertFalse($this->client->getResponse()->isSuccessful());
     }
 }

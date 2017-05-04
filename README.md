@@ -7,8 +7,13 @@ Docker
 * `cd ./docker`
 * `docker-compose up --build`
 
-* PS: Wait composer container finish, then you'll may be ready to start
+* PS: Wait composer container exit, then you'll may be ready to start
 
+Running tests with docker
+------
+
+* You'll need to do the before step
+* `docker exec -it php phpunit`
 
 Minimum Requirements
 ---------
@@ -28,8 +33,3 @@ Installation
 * $ curl http://127.0.0.1:8000/customers/ -X POST -d '[{"name":"leandro", "age":26}, {"name":"marcio", "age":30}]'
 * Then check your MongoDB collection to see if customers were created or just call the action
 * $ curl http://127.0.0.1:8000/customers/
-
-Running tests
-------
-* Install PHPUnit
-* In project root run: phpunit

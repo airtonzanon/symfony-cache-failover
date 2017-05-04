@@ -35,13 +35,16 @@ class CustomersRepository
     }
 
     /**
-     * @param array $customer
+     * @param $customer
+     * @return bool
      * @throws \Exception
      */
     public function insertData($customer)
     {
         try {
             $this->databaseService->customers->insert($customer);
+
+            return true;
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
@@ -51,6 +54,7 @@ class CustomersRepository
     {
         try {
             $this->databaseService->customers->drop();
+            return true;
         } catch (\Exception $ex) {
             throw new \Exception($ex->getMessage());
         }
