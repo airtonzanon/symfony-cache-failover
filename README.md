@@ -15,21 +15,18 @@ Running tests with docker
 * You'll need to do the before step
 * `docker exec -it php phpunit`
 
-Minimum Requirements
----------
-* PHP 5.4
-* [MongoDB driver](http://php.net/manual/en/mongo.installation.php#mongo.installation.nix)
-* Mongo 2.6
-* Redis 3
+How to now if cache over is working
+--------
 
-Installation
-------
-* $ git clone git@bitbucket.org:easytaxi/interview-cachefailover.git
-* $ cd interview-cachefailover/
-* $ composer install
-* $ php app/console server:run
-* Open http://127.0.0.1:8000/customers in your browser (check if everything is fine)
-* You can test your database operation by doing a POST into /customers/
-* $ curl http://127.0.0.1:8000/customers/ -X POST -d '[{"name":"leandro", "age":26}, {"name":"marcio", "age":30}]'
-* Then check your MongoDB collection to see if customers were created or just call the action
-* $ curl http://127.0.0.1:8000/customers/
+* After you did these steps before, run it:
+* `curl http://127.0.0.1:8000/customers/ -X POST -d '[{"name":"leandro", "age":26}, {"name":"marcio", "age":30}]'`
+* Then it may return success. After that, run it:
+*  `curl http://127.0.0.1:8000/customers/ -X GET`
+* Then it may return all data in mongodb. After second hit, it'll get data from redis.
+* To verify if cache fail over is working, run it:
+* `docker stop redis`
+* It'll stop redis container, then run it again:
+*  `curl http://127.0.0.1:8000/customers/ -X GET`
+* Right now you'll see the data, but it was returned by mongodb
+* Just to finish, run it:
+*  `curl http://127.0.0.1:8000/customers/ -X DELETE`
