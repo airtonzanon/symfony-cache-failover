@@ -15,7 +15,7 @@ Running tests with docker
 * You'll need to do the before step
 * `docker exec -it php phpunit`
 
-How to now if cache over is working
+How to know if cache over is working
 --------
 
 * After you did these steps before, run it:
